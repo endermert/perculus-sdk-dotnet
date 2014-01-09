@@ -1,0 +1,6 @@
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDK\obj\Debug\PerculusSDK.csprojResolveAssemblyReference.cache
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDK\bin\Debug\PerculusSDK.dll.config
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDK\bin\Debug\PerculusSDK.dll
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDK\bin\Debug\PerculusSDK.pdb
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDK\obj\Debug\PerculusSDK.dll
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDK\obj\Debug\PerculusSDK.pdb

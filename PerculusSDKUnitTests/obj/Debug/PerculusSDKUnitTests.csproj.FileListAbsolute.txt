@@ -1,0 +1,7 @@
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDKUnitTests\obj\Debug\PerculusSDKUnitTests.csprojResolveAssemblyReference.cache
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDKUnitTests\bin\Debug\PerculusSDKUnitTests.dll
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDKUnitTests\bin\Debug\PerculusSDKUnitTests.pdb
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDKUnitTests\bin\Debug\PerculusSDK.dll
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDKUnitTests\bin\Debug\PerculusSDK.pdb
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDKUnitTests\obj\Debug\PerculusSDKUnitTests.dll
+C:\Users\zafer.gurel\Documents\GitHub\perculus-sdk-dotnet\PerculusSDKUnitTests\obj\Debug\PerculusSDKUnitTests.pdb

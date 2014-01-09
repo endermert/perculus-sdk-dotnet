@@ -1,0 +1,1599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.perculus.com/api/v2/rooms" xmlns:s1="http://www.perculus.com/api/v2/datatypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.perculus.com/api/v2/rooms" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.perculus.com/api/v2/rooms">
+      <s:import namespace="http://www.perculus.com/api/v2/datatypes" />
+      <s:element name="GetListForInterval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="beginDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="mode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListForIntervalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WSResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="data" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s1:xmlData" />
+        </s:sequence>
+        <s:attribute name="code" type="s:int" use="required" />
+        <s:attribute name="success" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="Session">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="moduleSettings" type="tns:ArrayOfModuleSetting" />
+          <s:element minOccurs="0" maxOccurs="1" name="sessionName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="sessionMode" type="tns:SessionMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="beginDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="webServerGMT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sessionLogo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="languageFile" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="sessionStyleId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="activeLayoutId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaServerIP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="colorCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="startActive" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:SessionUserInfo" />
+        </s:sequence>
+        <s:attribute name="id" type="s:int" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfModuleSetting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="setting" nillable="true" type="tns:ModuleSetting" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ModuleSetting">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="mname" type="s:string" />
+            <s:attribute name="key" type="s:string" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="SessionMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="live" />
+          <s:enumeration value="playback" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SessionUserInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="userImage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="userType" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Room">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ROOMID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SESSIONNAME" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ADDDATE" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BEGINDATE" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DURATION" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LANGUAGEFILE" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SOUND_RATE" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VIDEO_QUALITY" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VIDEO_BANDWIDTH" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MEDIASERVER_IP" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="REQUIRESLOGIN" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PASSKEY" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SEND_PASSKEY" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="COMPANYID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CATEGORY" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIPTION" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SEND_ICS" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="INREPLAYMODE" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="REPLAYSIZE" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="COLORCODE" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FORMENROLL_ALLOW" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FORMENROLL_TYPE" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FORMENROLL_CAPACITY" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FLASHFILE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ROOMGUID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="STREAMCOUNT" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="STARTACTIVE" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="USERRIGHTSCHEMA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PERMITTEDSYSTEMLAYOUTS" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DEFAULTLAYOUTID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="USERADDED" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="USERMODIFIED" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DATEMODIFIED" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PollResults">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="user" type="tns:UserVote" />
+        </s:sequence>
+        <s:attribute name="id" type="s:int" use="required" />
+      </s:complexType>
+      <s:complexType name="UserVote">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="answers" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="voteDuration" type="s:int" />
+        </s:sequence>
+        <s:attribute name="id" type="s:int" use="required" />
+      </s:complexType>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="USERID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SURNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="USERNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PASSWORD" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMAILADDRESS" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="COMPANYID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="USERGROUP" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EXPIRES" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LOGINALLOWED" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="INTG_EXTRA_STRING1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="INTG_EXTRA_STRING2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ISACTIVE" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AD_GUID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AD_SID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AD_SAMACCOUNTNAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AD_DOMAIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CULTURE" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="USERADDED" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="USERMODIFIED" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DATEMODIFIED" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DATEADDED" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="GROUPS" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Poll">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="question" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="timeLimit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="status" type="tns:PollStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="publicResults" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:PollType" />
+          <s:element minOccurs="0" maxOccurs="1" name="choices" type="tns:ArrayOfPollOption" />
+        </s:sequence>
+        <s:attribute name="id" type="s:int" use="required" />
+        <s:attribute name="rid" type="s:int" use="required" />
+      </s:complexType>
+      <s:simpleType name="PollStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="open" />
+          <s:enumeration value="apply" />
+          <s:enumeration value="close" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="PollType">
+        <s:restriction base="s:string">
+          <s:enumeration value="single" />
+          <s:enumeration value="multi" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfPollOption">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="choice" nillable="true" type="tns:PollOption" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PollOption">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="id" type="s:int" use="required" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:element name="AuthHeader" type="tns:AuthHeader" />
+      <s:complexType name="AuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetListForInterval_Filtered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="beginDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="mode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="category" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="instructorId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListForInterval_FilteredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAttendees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outAttendeds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inUserType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddAttendeesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterAttendees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outAttendeds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inUserType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterAttendeesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterAttendee">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="inUserType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterAttendeeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterExternalAttendee">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="inUserType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterExternalAttendeeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendInvitation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomUserIds" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendInvitationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendInvitation_Customized">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomUserIds" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customSubject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customBody" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendInvitation_CustomizedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostFile2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="callBackURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostFile2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostURL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostURLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostURL2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="callBackURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PostURL2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttendCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttendCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttendCodeWithEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttendCodeWithEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttendCodes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttendCodesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomCategoryList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRoomCategoryListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FileList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FileListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterFromRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterFromRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterFromRoomByAttendCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="attendCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterFromRoomByAttendCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterFromRoomByEmailAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeRegisterFromRoomByEmailAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="sessionName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="beginDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="duration" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="category" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="colorCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="streamCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="externalLogoUrl" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startActive" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="formEnroll_Allow" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="formEnroll_Capacity" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="formEnroll_Type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendPassKey" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="passKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendICS" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="userRightSchema" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="defaultLayout" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="permittedLayoutAliases" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="customModuleSettings" type="tns:ArrayOfModuleSetting1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfModuleSetting1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ModuleSetting" nillable="true" type="tns:ModuleSetting" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PackRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PackRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitializeUserSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InitializeUserSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserSessionInitialized">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsUserSessionInitializedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="roomId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="response" nillable="true" type="tns:WSResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.perculus.com/api/v2/datatypes">
+      <s:element name="xmlData">
+        <s:complexType mixed="true">
+          <s:sequence>
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetListForIntervalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListForInterval" />
+  </wsdl:message>
+  <wsdl:message name="GetListForIntervalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListForIntervalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListForIntervalAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetListForInterval_FilteredSoapIn">
+    <wsdl:part name="parameters" element="tns:GetListForInterval_Filtered" />
+  </wsdl:message>
+  <wsdl:message name="GetListForInterval_FilteredSoapOut">
+    <wsdl:part name="parameters" element="tns:GetListForInterval_FilteredResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListForInterval_FilteredAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoomInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomInfoAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="ReadRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:ReadRoom" />
+  </wsdl:message>
+  <wsdl:message name="ReadRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:ReadRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReadRoomAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoom" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddAttendeesSoapIn">
+    <wsdl:part name="parameters" element="tns:AddAttendees" />
+  </wsdl:message>
+  <wsdl:message name="AddAttendeesSoapOut">
+    <wsdl:part name="parameters" element="tns:AddAttendeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddAttendeesAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="RegisterAttendeesSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterAttendees" />
+  </wsdl:message>
+  <wsdl:message name="RegisterAttendeesSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterAttendeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterAttendeesAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="RegisterAttendeeSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterAttendee" />
+  </wsdl:message>
+  <wsdl:message name="RegisterAttendeeSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterAttendeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterAttendeeAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="RegisterExternalAttendeeSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterExternalAttendee" />
+  </wsdl:message>
+  <wsdl:message name="RegisterExternalAttendeeSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterExternalAttendeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterExternalAttendeeAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="SendInvitationSoapIn">
+    <wsdl:part name="parameters" element="tns:SendInvitation" />
+  </wsdl:message>
+  <wsdl:message name="SendInvitationSoapOut">
+    <wsdl:part name="parameters" element="tns:SendInvitationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendInvitationAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="SendInvitation_CustomizedSoapIn">
+    <wsdl:part name="parameters" element="tns:SendInvitation_Customized" />
+  </wsdl:message>
+  <wsdl:message name="SendInvitation_CustomizedSoapOut">
+    <wsdl:part name="parameters" element="tns:SendInvitation_CustomizedResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendInvitation_CustomizedAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="PostFileSoapIn">
+    <wsdl:part name="parameters" element="tns:PostFile" />
+  </wsdl:message>
+  <wsdl:message name="PostFileSoapOut">
+    <wsdl:part name="parameters" element="tns:PostFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostFileAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="PostFile2SoapIn">
+    <wsdl:part name="parameters" element="tns:PostFile2" />
+  </wsdl:message>
+  <wsdl:message name="PostFile2SoapOut">
+    <wsdl:part name="parameters" element="tns:PostFile2Response" />
+  </wsdl:message>
+  <wsdl:message name="PostFile2AuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="PostURLSoapIn">
+    <wsdl:part name="parameters" element="tns:PostURL" />
+  </wsdl:message>
+  <wsdl:message name="PostURLSoapOut">
+    <wsdl:part name="parameters" element="tns:PostURLResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostURLAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="PostURL2SoapIn">
+    <wsdl:part name="parameters" element="tns:PostURL2" />
+  </wsdl:message>
+  <wsdl:message name="PostURL2SoapOut">
+    <wsdl:part name="parameters" element="tns:PostURL2Response" />
+  </wsdl:message>
+  <wsdl:message name="PostURL2AuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttendCode" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttendCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodeAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodeWithEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttendCodeWithEmail" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodeWithEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttendCodeWithEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodeWithEmailAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttendCodes" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttendCodesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttendCodesAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomCategoryListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoomCategoryList" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomCategoryListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomCategoryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomCategoryListAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="FileListSoapIn">
+    <wsdl:part name="parameters" element="tns:FileList" />
+  </wsdl:message>
+  <wsdl:message name="FileListSoapOut">
+    <wsdl:part name="parameters" element="tns:FileListResponse" />
+  </wsdl:message>
+  <wsdl:message name="FileListAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:DeRegisterFromRoom" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:DeRegisterFromRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomByAttendCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:DeRegisterFromRoomByAttendCode" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomByAttendCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:DeRegisterFromRoomByAttendCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomByAttendCodeAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomByEmailAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:DeRegisterFromRoomByEmailAddress" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomByEmailAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:DeRegisterFromRoomByEmailAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeRegisterFromRoomByEmailAddressAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRoom" />
+  </wsdl:message>
+  <wsdl:message name="AddRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRoomAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="PackRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:PackRoom" />
+  </wsdl:message>
+  <wsdl:message name="PackRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:PackRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="PackRoomAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="InitializeUserSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:InitializeUserSession" />
+  </wsdl:message>
+  <wsdl:message name="InitializeUserSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:InitializeUserSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="InitializeUserSessionAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsUserSessionInitializedSoapIn">
+    <wsdl:part name="parameters" element="tns:IsUserSessionInitialized" />
+  </wsdl:message>
+  <wsdl:message name="IsUserSessionInitializedSoapOut">
+    <wsdl:part name="parameters" element="tns:IsUserSessionInitializedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsUserSessionInitializedAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:portType name="RoomsSoap">
+    <wsdl:operation name="GetListForInterval">
+      <wsdl:input message="tns:GetListForIntervalSoapIn" />
+      <wsdl:output message="tns:GetListForIntervalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListForInterval_Filtered">
+      <wsdl:input message="tns:GetListForInterval_FilteredSoapIn" />
+      <wsdl:output message="tns:GetListForInterval_FilteredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomInfo">
+      <wsdl:input message="tns:GetRoomInfoSoapIn" />
+      <wsdl:output message="tns:GetRoomInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadRoom">
+      <wsdl:input message="tns:ReadRoomSoapIn" />
+      <wsdl:output message="tns:ReadRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoom">
+      <wsdl:input message="tns:GetRoomSoapIn" />
+      <wsdl:output message="tns:GetRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAttendees">
+      <wsdl:input message="tns:AddAttendeesSoapIn" />
+      <wsdl:output message="tns:AddAttendeesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterAttendees">
+      <wsdl:input message="tns:RegisterAttendeesSoapIn" />
+      <wsdl:output message="tns:RegisterAttendeesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterAttendee">
+      <wsdl:input message="tns:RegisterAttendeeSoapIn" />
+      <wsdl:output message="tns:RegisterAttendeeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterExternalAttendee">
+      <wsdl:input message="tns:RegisterExternalAttendeeSoapIn" />
+      <wsdl:output message="tns:RegisterExternalAttendeeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendInvitation">
+      <wsdl:input message="tns:SendInvitationSoapIn" />
+      <wsdl:output message="tns:SendInvitationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendInvitation_Customized">
+      <wsdl:input message="tns:SendInvitation_CustomizedSoapIn" />
+      <wsdl:output message="tns:SendInvitation_CustomizedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostFile">
+      <wsdl:input message="tns:PostFileSoapIn" />
+      <wsdl:output message="tns:PostFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostFile2">
+      <wsdl:input message="tns:PostFile2SoapIn" />
+      <wsdl:output message="tns:PostFile2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostURL">
+      <wsdl:input message="tns:PostURLSoapIn" />
+      <wsdl:output message="tns:PostURLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostURL2">
+      <wsdl:input message="tns:PostURL2SoapIn" />
+      <wsdl:output message="tns:PostURL2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCode">
+      <wsdl:input message="tns:GetAttendCodeSoapIn" />
+      <wsdl:output message="tns:GetAttendCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCodeWithEmail">
+      <wsdl:input message="tns:GetAttendCodeWithEmailSoapIn" />
+      <wsdl:output message="tns:GetAttendCodeWithEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCodes">
+      <wsdl:input message="tns:GetAttendCodesSoapIn" />
+      <wsdl:output message="tns:GetAttendCodesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomCategoryList">
+      <wsdl:input message="tns:GetRoomCategoryListSoapIn" />
+      <wsdl:output message="tns:GetRoomCategoryListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FileList">
+      <wsdl:input message="tns:FileListSoapIn" />
+      <wsdl:output message="tns:FileListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoom">
+      <wsdl:input message="tns:DeRegisterFromRoomSoapIn" />
+      <wsdl:output message="tns:DeRegisterFromRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoomByAttendCode">
+      <wsdl:input message="tns:DeRegisterFromRoomByAttendCodeSoapIn" />
+      <wsdl:output message="tns:DeRegisterFromRoomByAttendCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoomByEmailAddress">
+      <wsdl:input message="tns:DeRegisterFromRoomByEmailAddressSoapIn" />
+      <wsdl:output message="tns:DeRegisterFromRoomByEmailAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRoom">
+      <wsdl:input message="tns:AddRoomSoapIn" />
+      <wsdl:output message="tns:AddRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PackRoom">
+      <wsdl:input message="tns:PackRoomSoapIn" />
+      <wsdl:output message="tns:PackRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InitializeUserSession">
+      <wsdl:input message="tns:InitializeUserSessionSoapIn" />
+      <wsdl:output message="tns:InitializeUserSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsUserSessionInitialized">
+      <wsdl:input message="tns:IsUserSessionInitializedSoapIn" />
+      <wsdl:output message="tns:IsUserSessionInitializedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input message="tns:DeleteSoapIn" />
+      <wsdl:output message="tns:DeleteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RoomsSoap" type="tns:RoomsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListForInterval">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetListForInterval" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetListForIntervalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListForInterval_Filtered">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetListForInterval_Filtered" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetListForInterval_FilteredAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomInfo">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetRoomInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRoomInfoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadRoom">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/ReadRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ReadRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoom">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAttendees">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/AddAttendees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddAttendeesAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterAttendees">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/RegisterAttendees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RegisterAttendeesAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterAttendee">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/RegisterAttendee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RegisterAttendeeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterExternalAttendee">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/RegisterExternalAttendee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RegisterExternalAttendeeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendInvitation">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/SendInvitation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SendInvitationAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendInvitation_Customized">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/SendInvitation_Customized" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SendInvitation_CustomizedAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostFile">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/PostFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostFileAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostFile2">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/PostFile2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostFile2AuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostURL">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/PostURL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostURLAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostURL2">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/PostURL2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PostURL2AuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCode">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetAttendCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAttendCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCodeWithEmail">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetAttendCodeWithEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAttendCodeWithEmailAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCodes">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetAttendCodes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAttendCodesAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomCategoryList">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/GetRoomCategoryList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRoomCategoryListAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FileList">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/FileList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:FileListAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoom">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/DeRegisterFromRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeRegisterFromRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoomByAttendCode">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/DeRegisterFromRoomByAttendCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeRegisterFromRoomByAttendCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoomByEmailAddress">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/DeRegisterFromRoomByEmailAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeRegisterFromRoomByEmailAddressAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoom">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/AddRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PackRoom">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/PackRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PackRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitializeUserSession">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/InitializeUserSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:InitializeUserSessionAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserSessionInitialized">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/IsUserSessionInitialized" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsUserSessionInitializedAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://www.perculus.com/api/v2/rooms/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RoomsSoap12" type="tns:RoomsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetListForInterval">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetListForInterval" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetListForIntervalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListForInterval_Filtered">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetListForInterval_Filtered" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetListForInterval_FilteredAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomInfo">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetRoomInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRoomInfoAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadRoom">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/ReadRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReadRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoom">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAttendees">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/AddAttendees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddAttendeesAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterAttendees">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/RegisterAttendees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RegisterAttendeesAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterAttendee">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/RegisterAttendee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RegisterAttendeeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterExternalAttendee">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/RegisterExternalAttendee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RegisterExternalAttendeeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendInvitation">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/SendInvitation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SendInvitationAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendInvitation_Customized">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/SendInvitation_Customized" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SendInvitation_CustomizedAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostFile">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/PostFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostFileAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostFile2">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/PostFile2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostFile2AuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostURL">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/PostURL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostURLAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostURL2">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/PostURL2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PostURL2AuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCode">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetAttendCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAttendCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCodeWithEmail">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetAttendCodeWithEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAttendCodeWithEmailAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttendCodes">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetAttendCodes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAttendCodesAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomCategoryList">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/GetRoomCategoryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRoomCategoryListAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FileList">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/FileList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:FileListAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoom">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/DeRegisterFromRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeRegisterFromRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoomByAttendCode">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/DeRegisterFromRoomByAttendCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeRegisterFromRoomByAttendCodeAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeRegisterFromRoomByEmailAddress">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/DeRegisterFromRoomByEmailAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeRegisterFromRoomByEmailAddressAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoom">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/AddRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PackRoom">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/PackRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PackRoomAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitializeUserSession">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/InitializeUserSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:InitializeUserSessionAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserSessionInitialized">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/IsUserSessionInitialized" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsUserSessionInitializedAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://www.perculus.com/api/v2/rooms/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Rooms">
+    <wsdl:port name="RoomsSoap" binding="tns:RoomsSoap">
+      <soap:address location="http://app.perculus.com/api/v2/rooms.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RoomsSoap12" binding="tns:RoomsSoap12">
+      <soap12:address location="http://app.perculus.com/api/v2/rooms.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

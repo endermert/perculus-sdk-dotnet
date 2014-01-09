@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerculusSDK", "PerculusSDK\PerculusSDK.csproj", "{5AB80118-BDF5-4E6A-BA01-0F52B0859E71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerculusSDKUnitTests", "PerculusSDKUnitTests\PerculusSDKUnitTests.csproj", "{38BBC5A2-7DF2-4F4A-9B5E-FA6A2287FEBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AB80118-BDF5-4E6A-BA01-0F52B0859E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB80118-BDF5-4E6A-BA01-0F52B0859E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB80118-BDF5-4E6A-BA01-0F52B0859E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB80118-BDF5-4E6A-BA01-0F52B0859E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38BBC5A2-7DF2-4F4A-9B5E-FA6A2287FEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38BBC5A2-7DF2-4F4A-9B5E-FA6A2287FEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38BBC5A2-7DF2-4F4A-9B5E-FA6A2287FEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38BBC5A2-7DF2-4F4A-9B5E-FA6A2287FEBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,5 +1,7 @@
 Perculus Software Development Kit
 =================================
+<a href="http://www.perculus.com" target="_blank">Perculus</a> is a virtual classroom system developed by <a href="http://www.advancity.com.tr" target="_blank">Advancity</a>.
+
 Perculus SDK v0.1 is a class library that is built on top of Perculus Web Service API.
 The programming language is C#.
 Its aim is to provide some good samples about using Perculus APIs.
